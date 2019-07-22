@@ -1,4 +1,4 @@
-# P1 smartmeter
+# P1 smartmeter DSMR board interface
 
 ## Introduction
 This app creates a device which retrieves energy statistics from a Dutch Smart Meter interface board from Willem Aandewiel. This board can be found here: https://opencircuit.nl/Product/15031/Slimme-meter-uitlezer-V4-bouwpakket-met-ESP-12 and complete documentation here: https://mrwheel.github.io/DSMRloggerWS/
