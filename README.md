@@ -12,3 +12,4 @@ This app is a fork of https://github.com/koktaildotcom/com.p1.smartmeter
 2. Add device `DSMR smart meter`.
 3. Configure IP and retrieval frequency
 
+Note: You need to restart the app when you change the retrieval frequency. The IP will be updated on every attempt.

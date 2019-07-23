@@ -10,9 +10,9 @@ class P1Driver extends Homey.Driver {
     onPairListDevices(data, callback) {
         let devices = [
             {
-                "name": "P1 smart meter",
+                "name": "DSMR smart meter",
                 "data": {
-                    "id": "p1-smartmeter"
+                    "id": "dsmr-smartmeter"
                 },
             },
         ];

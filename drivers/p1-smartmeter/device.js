@@ -1,4 +1,6 @@
 const Homey = require('homey');
+const fetch = require('node-fetch');
+const { ManagerSettings } = require('homey');
 
 class P1Device extends Homey.Device {
 
@@ -6,16 +8,42 @@ class P1Device extends Homey.Device {
         return Math.round(number * 100) / 100
     }
 
+    timerFire(device) {
+        var ip = ManagerSettings.get('ip');
+        console.log ("IP read: " + ip);
+        try {
+            if (ip.length < 6) {
+                console.log ("IP too short. Aborting attempt.");
+                return;      
+            }
+            const result = fetch('http://' + ip + '/restAPI?get=Actueel')
+            .then(function(response){
+                //console.log (response);
+                return response.json();
+            })
+            .then(function(json){
+                console.log("Energy Delivered: " + json.Energy_Delivered);
+                device.processData(json);
+            })
+            .catch (function(err) {
+                console.log ("Error reaching DSMR meter: " + err)
+            })
+            ;
+        } catch (err) {
+            console.log ("Error reaching DSMR meter: " + err);
+        }
+    }
+
     onInit() {
         let device = this;
         device._driver = this.getDriver();
-        device.registerEventListeners(device);
-    }
-
-    registerEventListeners(device) {
-        Homey.on('update.data', function (data) {
-            device.processData(data);
-        });
+        console.log ("Starting Device");
+        var freq = Number(ManagerSettings.get('freq'));
+        console.log ("Frequency read: " + freq);
+        if (freq == 0) freq = 30;
+        if (freq < 5) freq = 5;
+        console.log ("Frequency set: " + freq);
+        setInterval (function(){return device.timerFire(device); }, freq * 1000)
     }
 
     processData(data) {
@@ -24,6 +52,7 @@ class P1Device extends Homey.Device {
         let update = device.getSetting('meter_gas_update_date');
         let updateDate = null;
 
+        console.log ("Processing update");
         if (null === update) {
             updateDate = new Date();
             device.setSettings({
@@ -39,10 +68,8 @@ class P1Device extends Homey.Device {
         let gasChange = 0;
 
         if (updateDate < new Date(now.getTime() - (1000 * 60 * 60))) {
-            if (data.gas) {
-                if (data.gas.reading) {
-                    gasNew = Number(data.gas.reading) * 1000;
-                }
+            if (data.Gas_Delivered) { 
+                gasNew = Number(data.Gas_Delivered) * 1000;
                 gasCurrent = Number(device.getCapabilityValue('meter_gas.consumed')) * 1000;
 
                 gasChange = (gasNew - gasCurrent) / 1000;
@@ -60,11 +87,11 @@ class P1Device extends Homey.Device {
         console.log("Data pushed:");
         console.log(data);
 
-        device.updateCapabilityValue('meter_gas.consumed', device.round(data.gas.reading));
-        device.updateCapabilityValue('measure_power.consumed', device.round(data.electricity.received.actual.reading * 1000));
-        device.updateCapabilityValue('measure_power.generated', device.round(data.electricity.delivered.actual.reading * 1000));
-        device.updateCapabilityValue('meter_power.consumed', device.round(data.electricity.received.tariff1.reading + data.electricity.received.tariff2.reading));
-        device.updateCapabilityValue('meter_power.generated', device.round(data.electricity.delivered.tariff1.reading + data.electricity.delivered.tariff2.reading));
+        device.updateCapabilityValue('meter_gas.consumed', device.round(data.Gas_Delivered));
+        device.updateCapabilityValue('measure_power.consumed', device.round(data.Power_Delivered * 1000));
+        device.updateCapabilityValue('measure_power.generated', device.round(data.Power_Returned * 1000));
+        device.updateCapabilityValue('meter_power.consumed', device.round(data.Energy_Delivered));
+        device.updateCapabilityValue('meter_power.generated', device.round(data.Energy_Returned));
     }
 
     updateCapabilityValue(capability, value) {
