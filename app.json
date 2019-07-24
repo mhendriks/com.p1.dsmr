@@ -47,8 +47,8 @@
         {
             "id": "p1-smartmeter",
             "name": {
-                "nl": "P1 slimme meter",
-                "en": "P1 smartmeter"
+                "nl": "P1 DSMRv4 Board Uitlezer",
+                "en": "P1 DSMRv4 Board Reader"
             },
             "images": {
                 "small": "./drivers/p1-smartmeter/assets/small.png",
