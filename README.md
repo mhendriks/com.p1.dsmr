@@ -1,7 +1,7 @@
 # P1 smartmeter DSMR board interface
 
 ## Abandonment
-I built this app for a friend who wanted to use this board with his Homey. I personally don't use homey, and my friend has since also switched to Home Assistant. Therefore I can't continue developing this app as I have no way to test it (and no compelling reason).
+I built this app for a friend who wanted to use this board with his Homey. I personally don't use Homey, and my friend has since also switched to Home Assistant. Therefore I can't continue developing this app as I have no way to test it (and no longer have a compelling reason).
 
 However the current version should still work. Of course, feel free to fork it if needed! If you like me to remove it from the store in favour of a maintained fork, please log an issue here and I'll sort this out!
 
