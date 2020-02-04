@@ -5,7 +5,7 @@ I built this app for a friend who wanted to use this board with his Homey. I per
 
 However the current version should still work as of right now (February 2020). Of course, feel free to fork it if needed! I will leave it in the Homey store for now as there is no alternative app yet. If you like me to remove it from the store in favour of your maintained fork, please log an issue here and I'll sort this out!
 
-I accepted the pull request of https://github.com/Radiotechniman which adds Homey 3.0 energy metering capability, but I have no way of validating if it works.
+I accepted the pull request of Radiotechniman which adds Homey 3.0 energy metering capability, but I have no way of validating if it works.
 
 ## Introduction
 This app creates a device which retrieves energy statistics from a Dutch Smart Meter interface board from Willem Aandewiel. This board can be found here: https://opencircuit.nl/Product/15031/Slimme-meter-uitlezer-V4-bouwpakket-met-ESP-12 and complete documentation here: https://mrwheel.github.io/DSMRloggerWS/
