@@ -43,6 +43,9 @@ class P1Device extends Homey.Device {
         if (freq == 0) freq = 30;
         if (freq < 5) freq = 5;
         console.log ("Frequency set: " + freq);
+        if (!device.hasCapability('measure_power')) { //added
+            device.addCapability('measure_power')
+        }
         setInterval (function(){return device.timerFire(device); }, freq * 1000)
     }
 
@@ -86,17 +89,17 @@ class P1Device extends Homey.Device {
 
         console.log("Data pushed:");
         console.log(data);
-
+        let measurePower =  device.round(data.Power_Delivered * 1000) ; //added
+        device.updateCapabilityValue('measure_power', measurePower); //added
         device.updateCapabilityValue('meter_gas.consumed', device.round(data.Gas_Delivered));
-        device.updateCapabilityValue('measure_power.consumed', device.round(data.Power_Delivered * 1000));
+        device.updateCapabilityValue('measure_power.consumed', measurePower); //changed
         device.updateCapabilityValue('measure_power.generated', device.round(data.Power_Returned * 1000));
         device.updateCapabilityValue('meter_power.consumed', device.round(data.Energy_Delivered));
         device.updateCapabilityValue('meter_power.generated', device.round(data.Energy_Returned));
     }
 
     updateCapabilityValue(capability, value) {
-        let device = this,
-            currentValue = device.getCapabilityValue(capability);
+        let device = this, currentValue = device.getCapabilityValue(capability);
 
         device.setCapabilityValue(capability, value);
 

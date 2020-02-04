@@ -1,7 +1,7 @@
 {
     "id": "com.p1.dsmr",
-    "version": "1.0.1",
-    "compatibility": ">=2.0.0",
+    "version": "1.0.2",
+    "compatibility": ">=3.0.0",
     "brandColor": "#ff00ff",
     "sdk": 2,
     "name": {
@@ -34,6 +34,10 @@
                 "email": "koktaildotcom@hotmail.com"
             },
             {
+               "name": "Niels van Gelderen",
+              "email": ""
+            },            
+            {
                 "name": "Lucas van der Have",
                 "email": "lucasvdhave@gmail.com"
             }
@@ -56,6 +60,7 @@
             },
             "class": "sensor",
             "capabilities": [
+                "measure_power",
                 "measure_power.consumed",
                 "meter_power.consumed",
                 "measure_power.generated",
@@ -63,7 +68,17 @@
                 "meter_gas.measure",
                 "meter_gas.consumed"
             ],
+            "energy": {
+                "cumulative": true
+            },
             "capabilitiesOptions": {
+                "measure_power": {
+                    "title": {
+                        "nl": "Elektriciteit huidig verbruik/teruglevering",
+                        "en": "Electricity current usage/generated"
+                    },
+                    "uiComponent": null
+                },                
                 "measure_power.consumed": {
                     "title": {
                         "nl": "Elektriciteit huidig verbruik",

@@ -12,6 +12,10 @@ The app retrieves the statistics every few seconds (which can be configured) fro
 
 This app is a fork of https://github.com/koktaildotcom/com.p1.smartmeter
 
+-=edit=- 
+
+App has been updated to work correctly with Homey's OS 3.0 
+
 ### Usage of the Homey app
 1. Install the app `com.p1.dsmr`.
 2. Add device `DSMR smart meter`.
