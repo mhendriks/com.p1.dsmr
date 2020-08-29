@@ -17,7 +17,7 @@
     "large": "/assets/images/large.png"
   },
   "author": {
-    "name": "Tycho Schenkeveld",
+    "name": "Thijs Bardoel",
     "email": "-"
   },
   "contributing": {
@@ -27,26 +27,150 @@
       }
     }
   },
-  "contributors": {
-    "developers": [
-      {
-        "name": "Leendert de Kok",
-        "email": "koktaildotcom@hotmail.com"
-      },
-      {
-        "name": "Niels van Gelderen",
-        "email": ""
-      },
-      {
-        "name": "Lucas van der Have",
-        "email": "lucasvdhave@gmail.com"
-      }
-    ]
-  },
   "category": [
     "energy"
   ],
   "permissions": [],
+  "drivers": [
+    {
+      "id": "dsmr-logger",
+      "name": {
+        "en": "DSMR logger"
+      },
+      "class": "other",
+      "capabilities": [
+        "meter_gas",
+        "measure_power",
+        "meter_power",
+        "meter_water"
+      ],
+      "energy": {
+        "approximation": {
+          "usageConstant": 5
+        }
+      },
+      "images": {
+        "large": "/drivers/dsmr-logger/assets/images/large.png",
+        "small": "/drivers/dsmr-logger/assets/images/small.png"
+      },
+      "settings": [
+        {
+          "id": "interval",
+          "type": "number",
+          "label": "Interval",
+          "value": 5,
+          "min": 0,
+          "max": 3600,
+          "units": "seconds"
+        },
+        {
+          "id": "hostname",
+          "type": "text",
+          "label": "Hostname or IP-address",
+          "value": "DSMR-api.local"
+        }
+      ],
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ]
+    },
+    {
+      "name": {
+        "nl": "P1 DSMRv4 Board Uitlezer",
+        "en": "P1 DSMRv4 Board Reader"
+      },
+      "images": {
+        "small": "./drivers/p1-smartmeter/assets/small.png",
+        "large": "./drivers/p1-smartmeter/assets/large.png"
+      },
+      "deprecated": true,
+      "class": "sensor",
+      "capabilities": [
+        "measure_power",
+        "measure_power.consumed",
+        "meter_power.consumed",
+        "measure_power.generated",
+        "meter_power.generated",
+        "meter_gas.measure",
+        "meter_gas.consumed"
+      ],
+      "energy": {
+        "cumulative": true
+      },
+      "capabilitiesOptions": {
+        "measure_power": {
+          "title": {
+            "nl": "Elektriciteit huidig verbruik/teruglevering",
+            "en": "Electricity current usage/generated"
+          },
+          "uiComponent": null
+        },
+        "measure_power.consumed": {
+          "title": {
+            "nl": "Elektriciteit huidig verbruik",
+            "en": "Electricity current usage"
+          }
+        },
+        "measure_power.generated": {
+          "isGenerator": true,
+          "title": {
+            "nl": "Elektriciteit huidig teruglevering",
+            "en": "Electricity current delivery"
+          }
+        },
+        "meter_power.consumed": {
+          "title": {
+            "nl": "Elektriciteit verbruik",
+            "en": "Electricity delivery"
+          }
+        },
+        "meter_power.generated": {
+          "isGenerator": true,
+          "title": {
+            "nl": "Elektriciteit teruglevering",
+            "en": "Electricity delivery"
+          }
+        },
+        "meter_gas.measure": {
+          "title": {
+            "nl": "Huidig gasverbruik",
+            "en": "Gas current usage"
+          },
+          "decimals": 5
+        },
+        "meter_gas.consumed": {
+          "title": {
+            "nl": "Gasverbruik",
+            "en": "Gas usage"
+          }
+        }
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_p1"
+          }
+        },
+        {
+          "id": "add_p1",
+          "template": "add_devices"
+        }
+      ],
+      "id": "p1-smartmeter"
+    }
+  ],
   "flow": {
     "triggers": [
       {
@@ -200,92 +324,5 @@
         ]
       }
     ]
-  },
-  "drivers": [
-    {
-      "name": {
-        "nl": "P1 DSMRv4 Board Uitlezer",
-        "en": "P1 DSMRv4 Board Reader"
-      },
-      "images": {
-        "small": "./drivers/p1-smartmeter/assets/small.png",
-        "large": "./drivers/p1-smartmeter/assets/large.png"
-      },
-      "class": "sensor",
-      "capabilities": [
-        "measure_power",
-        "measure_power.consumed",
-        "meter_power.consumed",
-        "measure_power.generated",
-        "meter_power.generated",
-        "meter_gas.measure",
-        "meter_gas.consumed"
-      ],
-      "energy": {
-        "cumulative": true
-      },
-      "capabilitiesOptions": {
-        "measure_power": {
-          "title": {
-            "nl": "Elektriciteit huidig verbruik/teruglevering",
-            "en": "Electricity current usage/generated"
-          },
-          "uiComponent": null
-        },
-        "measure_power.consumed": {
-          "title": {
-            "nl": "Elektriciteit huidig verbruik",
-            "en": "Electricity current usage"
-          }
-        },
-        "measure_power.generated": {
-          "isGenerator": true,
-          "title": {
-            "nl": "Elektriciteit huidig teruglevering",
-            "en": "Electricity current delivery"
-          }
-        },
-        "meter_power.consumed": {
-          "title": {
-            "nl": "Elektriciteit verbruik",
-            "en": "Electricity delivery"
-          }
-        },
-        "meter_power.generated": {
-          "isGenerator": true,
-          "title": {
-            "nl": "Elektriciteit teruglevering",
-            "en": "Electricity delivery"
-          }
-        },
-        "meter_gas.measure": {
-          "title": {
-            "nl": "Huidig gasverbruik",
-            "en": "Gas current usage"
-          },
-          "decimals": 5
-        },
-        "meter_gas.consumed": {
-          "title": {
-            "nl": "Gasverbruik",
-            "en": "Gas usage"
-          }
-        }
-      },
-      "pair": [
-        {
-          "id": "list_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "add_p1"
-          }
-        },
-        {
-          "id": "add_p1",
-          "template": "add_devices"
-        }
-      ],
-      "id": "p1-smartmeter"
-    }
-  ]
+  }
 }

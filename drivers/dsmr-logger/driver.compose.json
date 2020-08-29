@@ -1,0 +1,52 @@
+{
+  "id": "dsmr-logger",
+  "name": {
+    "en": "DSMR logger"
+  },
+  "class": "other",
+  "capabilities": [
+    "meter_gas",
+    "measure_power",
+    "meter_power",
+    "meter_water"
+  ],
+  "energy": {
+    "approximation": {
+      "usageConstant": 5
+    }
+  },
+  "images": {
+    "large": "/drivers/dsmr-logger/assets/images/large.png",
+    "small": "/drivers/dsmr-logger/assets/images/small.png"
+  },
+  "settings": [
+    {
+      "id": "interval",
+      "type": "number",
+      "label": "Interval",
+      "value": 5,
+      "min": 0,
+      "max": 3600,
+      "units": "seconds"
+    },
+    {
+      "id": "hostname",
+      "type": "text",
+      "label": "Hostname or IP-address",
+      "value": "DSMR-api.local"
+    }
+  ],
+  "pair": [
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_my_devices"
+      }
+    },
+    {
+      "id": "add_my_devices",
+      "template": "add_devices"
+    }
+  ]
+}
