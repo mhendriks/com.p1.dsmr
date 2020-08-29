@@ -1,0 +1,118 @@
+{
+  "triggers": [
+    {
+      "id": "measure_power.consumed.changed",
+      "title": {
+        "en": "Current electricity changed",
+        "nl": "Huidige elektriciteitverbruik gewijzigd"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "measure_power.consumed",
+          "type": "number",
+          "title": {
+            "en": "Current electricity (W)",
+            "nl": "Huidige elektriciteitverbruik (W)"
+          },
+          "example": 500
+        }
+      ]
+    },
+    {
+      "id": "meter_power.consumed.changed",
+      "title": {
+        "en": "Consumed electricity changed",
+        "nl": "Verbruikte elektriciteit gewijzigd"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "meter_power.consumed",
+          "type": "number",
+          "title": {
+            "en": "Consumed electricity (W)",
+            "nl": "Verbruikte elektriciteit (W)"
+          },
+          "example": 123456
+        }
+      ]
+    },
+    {
+      "id": "measure_power.generated.changed",
+      "title": {
+        "en": "Current generated electricity changed",
+        "nl": "Huidige opgewekte elektriciteit gewijzigd"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "measure_power.generated",
+          "type": "number",
+          "title": {
+            "en": "Current generated electricity (W)",
+            "nl": "Huidige opgewekte elektriciteit (W)"
+          },
+          "example": 100
+        }
+      ]
+    },
+    {
+      "id": "meter_power.generated.changed",
+      "title": {
+        "en": "Generated electricity changed",
+        "nl": "Opgewekte elektriciteit gewijzigd"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "meter_power.generated",
+          "type": "number",
+          "title": {
+            "en": "Generated electricity (W)",
+            "nl": "Opgewekte elektriciteit (W)"
+          },
+          "example": 123456
+        }
+      ]
+    },
+    {
+      "id": "meter_gas.measure.changed",
+      "title": {
+        "en": "Current gas consumption changed",
+        "nl": "Huidig gasverbruik gewijzigd"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "meter_gas.measure",
+          "type": "number",
+          "title": {
+            "en": "Current gas consumption (m³)",
+            "nl": "Huidig gasverbruik (m³)"
+          },
+          "example": 0.123
+        }
+      ]
+    },
+    {
+      "id": "meter_gas.consumed.changed",
+      "title": {
+        "en": "Gas consumption changed",
+        "nl": "Gasverbruik gewijzigd"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "meter_gas.consumed",
+          "type": "number",
+          "title": {
+            "en": "Gas consumption (m³)",
+            "nl": "Gasverbruik (m³)"
+          },
+          "example": 500
+        }
+      ]
+    }
+  ]
+}

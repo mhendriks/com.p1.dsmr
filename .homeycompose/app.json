@@ -1,0 +1,50 @@
+{
+  "id": "com.p1.dsmr",
+  "version": "1.0.2",
+  "compatibility": ">=3.0.0",
+  "brandColor": "#ff00ff",
+  "sdk": 2,
+  "name": {
+    "nl": "P1 DSMRv4 Board Lezer",
+    "en": "P1 DSMRv4 Board Reader"
+  },
+  "description": {
+    "nl": "Leest data uit P1 DSMRv4 board van Willem Aandewiel",
+    "en": "Reads data from P1 DSMRv4 board van Willem Aandewiel"
+  },
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png"
+  },
+  "author": {
+    "name": "Tycho Schenkeveld",
+    "email": "-"
+  },
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": ""
+      }
+    }
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Leendert de Kok",
+        "email": "koktaildotcom@hotmail.com"
+      },
+      {
+        "name": "Niels van Gelderen",
+        "email": ""
+      },
+      {
+        "name": "Lucas van der Have",
+        "email": "lucasvdhave@gmail.com"
+      }
+    ]
+  },
+  "category": [
+    "energy"
+  ],
+  "permissions": []
+}
