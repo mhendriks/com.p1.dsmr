@@ -1,26 +1,19 @@
-# P1 smartmeter DSMR board interface
+# DSMR-logger
+This is the repository for the [Homey app](https://homey.app/nl-nl/app/com.p1.dsmr/P1-DSMRv4-Board-Lezer/) for the [DSMR logger](https://willem.aandewiel.nl/index.php/2018/08/28/slimme-meter-uitlezer/) that is developed by Willem Aandewiel. 
 
-## Abandonment
-I built this app for a friend who wanted to use this board with his Homey. I personally don't use Homey, and my friend has since also switched to Home Assistant. Therefore I can't continue developing this app as I have no way to test it (and no longer have a compelling reason). I also don't live in the Netherlands so I don't even have access to a DSMR meter.
+## Installation
+When adding a device with the application, the app searches for a DSRM-logger with the `DSMR-API.local/` hostname. This is the default hostname of the DSMR-logger. The DSMR-logger is saved with the MAC-address as unique ID. The `telegraminterval` of the DSRM-logger is used as interval for the app. 
 
-However the current version should still work as of right now (February 2020). Of course, feel free to fork it if needed! I will leave it in the Homey store for now as there is no alternative app yet. If you like me to remove it from the store in favour of your maintained fork, please log an issue here and I'll sort this out!
+## Devices
+This app contains two device drivers.
 
-I accepted the pull request of Radiotechniman which adds Homey 3.0 energy metering capability, but I have no way of validating if it works.
+### dsmr-logger
+The device driver dsmr-logger is the new driver for supporting the new REST-API of the DSMRloggerAPI firmware of the DSMR-logger. This driver is in development, feature-requests and bug-fixes are welcome.
 
-## Introduction
-This app creates a device which retrieves energy statistics from a Dutch Smart Meter interface board from Willem Aandewiel. This board can be found here: https://opencircuit.nl/Product/15031/Slimme-meter-uitlezer-V4-bouwpakket-met-ESP-12 and complete documentation here: https://mrwheel.github.io/DSMRloggerWS/
+### p1-smartmeter (deprecated)
+The device driver p1-smartmeter is developed for the DSMRloggerWS software for the DSMR-logger. The DSRMloggerWS is an old firmware version and no longer maintained by the developer, so the device driver is also deprecated.
 
-The app retrieves the statistics every few seconds (which can be configured) from an IP (can also be configured).
-
-This app is a fork of https://github.com/koktaildotcom/com.p1.smartmeter
-
--=edit=- 
-
-App has been updated to work correctly with Homey's OS 3.0 
-
-### Usage of the Homey app
-1. Install the app `com.p1.dsmr`.
-2. Add device `DSMR smart meter`.
-3. Configure IP and retrieval frequency
-
-Note: You need to restart the app when you change the retrieval frequency. The IP will be updated on every attempt.
+## Settings
+After installation the following properties can be changed on the device: 
+ - Hostname, can also be an IP-address
+ - Interval
