@@ -6,6 +6,7 @@ const fetch = require('node-fetch');
 class MyDevice extends Homey.Device {
 
 	timerElapsed(device) {
+		setTimeout(function () { device.timerElapsed(device); }, device.getSetting('interval') * 1000);
 		var energy = {
 			"list": [
 				{ "device": "measure_power", "factor": 1000, "dsmr": ["power_delivered_l1", "power_delivered_l2", "power_delivered_l3"] },
@@ -30,22 +31,21 @@ class MyDevice extends Homey.Device {
 				});
 			});
 		}).catch(function (err) {
-			console.log(err);
+			device.log(err);
 		});
 	}
 
 
-	// this method is called when the Device is inited
+	// this method is called when the Device is initialized
 	onInit() {
-		var interval = this.getSetting('interval');
-		this.log('Device init');
-		this.log('Name:', this.getName());
-		this.log('Class:', this.getClass());
-		this.log('hostname:', this.getSetting('hostname'));
-		this.log('interval:', interval);
 		let device = this;
+		device.log('dsmr-logger init');
+		device.log('Name:', device.getName());
+		device.log('Class:', device.getClass());
+		device.log('Hostname:', device.getSetting('hostname'));
+		device.log('Interval:', device.getSetting('interval'));
 
-		setInterval(function () { device.timerElapsed(device); }, interval * 1000);
+		setTimeout(function () { device.timerElapsed(device); }, device.getSetting('interval') * 1000);
 	}
 }
 
