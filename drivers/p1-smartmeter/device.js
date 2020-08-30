@@ -1,6 +1,5 @@
 const Homey = require('homey');
 const fetch = require('node-fetch');
-const { ManagerSettings } = require('homey');
 
 class P1Device extends Homey.Device {
 
@@ -9,7 +8,7 @@ class P1Device extends Homey.Device {
     }
 
     timerFire(device) {
-        var ip = ManagerSettings.get('ip');
+        var ip = device.getSetting('hostname');
         console.log ("IP read: " + ip);
         try {
             if (ip.length < 6) {
@@ -38,7 +37,7 @@ class P1Device extends Homey.Device {
         let device = this;
         device._driver = this.getDriver();
         console.log ("Starting Device");
-        var freq = Number(ManagerSettings.get('freq'));
+        var freq = device.getSetting('interval');
         console.log ("Frequency read: " + freq);
         if (freq == 0) freq = 30;
         if (freq < 5) freq = 5;

@@ -8,6 +8,23 @@
     "large": "./drivers/p1-smartmeter/assets/large.png"
   },
   "deprecated": true,
+  "settings": [
+    {
+      "id": "interval",
+      "type": "number",
+      "label": "Interval",
+      "value": 5,
+      "min": 0,
+      "max": 3600,
+      "units": "seconds"
+    },
+    {
+      "id": "hostname",
+      "type": "text",
+      "label": "Hostname or IP-address",
+      "value": "DSMR-api.local"
+    }
+  ],
   "class": "sensor",
   "capabilities": [
     "measure_power",
