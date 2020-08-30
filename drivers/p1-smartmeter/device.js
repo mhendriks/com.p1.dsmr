@@ -8,44 +8,38 @@ class P1Device extends Homey.Device {
     }
 
     timerFire(device) {
+        setTimeout(function () { return device.timerFire(device); }, device.getSetting('interval') * 1000)
         var ip = device.getSetting('hostname');
-        console.log ("IP read: " + ip);
         try {
-            if (ip.length < 6) {
-                console.log ("IP too short. Aborting attempt.");
-                return;      
-            }
             const result = fetch('http://' + ip + '/restAPI?get=Actueel')
-            .then(function(response){
-                //console.log (response);
-                return response.json();
-            })
-            .then(function(json){
-                console.log("Energy Delivered: " + json.Energy_Delivered);
-                device.processData(json);
-            })
-            .catch (function(err) {
-                console.log ("Error reaching DSMR meter: " + err)
-            })
-            ;
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (json) {
+                    console.log("Energy Delivered: " + json.Energy_Delivered);
+                    device.processData(json);
+                })
+                .catch(function (err) {
+                    console.log("Error reaching DSMR meter: " + err)
+                })
+                ;
         } catch (err) {
-            console.log ("Error reaching DSMR meter: " + err);
+            console.log("Error reaching DSMR meter: " + err);
         }
     }
 
     onInit() {
         let device = this;
         device._driver = this.getDriver();
-        console.log ("Starting Device");
-        var freq = device.getSetting('interval');
-        console.log ("Frequency read: " + freq);
-        if (freq == 0) freq = 30;
-        if (freq < 5) freq = 5;
-        console.log ("Frequency set: " + freq);
+		device.log('(deprecated) p1-smartmeter init');
+		device.log('Name:', device.getName());
+		device.log('Class:', device.getClass());
+		device.log('Hostname:', device.getSetting('hostname'));
+        device.log('Interval:', device.getSetting('interval'));
         if (!device.hasCapability('measure_power')) { //added
             device.addCapability('measure_power')
         }
-        setInterval (function(){return device.timerFire(device); }, freq * 1000)
+        setTimeout(function () { return device.timerFire(device); }, device.getSetting('interval') * 1000)
     }
 
     processData(data) {
@@ -54,7 +48,6 @@ class P1Device extends Homey.Device {
         let update = device.getSetting('meter_gas_update_date');
         let updateDate = null;
 
-        console.log ("Processing update");
         if (null === update) {
             updateDate = new Date();
             device.setSettings({
@@ -70,7 +63,7 @@ class P1Device extends Homey.Device {
         let gasChange = 0;
 
         if (updateDate < new Date(now.getTime() - (1000 * 60 * 60))) {
-            if (data.Gas_Delivered) { 
+            if (data.Gas_Delivered) {
                 gasNew = Number(data.Gas_Delivered) * 1000;
                 gasCurrent = Number(device.getCapabilityValue('meter_gas.consumed')) * 1000;
 
@@ -88,7 +81,7 @@ class P1Device extends Homey.Device {
 
         console.log("Data pushed:");
         console.log(data);
-        let measurePower =  device.round(data.Power_Delivered * 1000) ; //added
+        let measurePower = device.round(data.Power_Delivered * 1000); //added
         device.updateCapabilityValue('measure_power', measurePower); //added
         device.updateCapabilityValue('meter_gas.consumed', device.round(data.Gas_Delivered));
         device.updateCapabilityValue('measure_power.consumed', measurePower); //changed
