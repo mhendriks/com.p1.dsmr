@@ -9,8 +9,8 @@
     "en": "P1 DSMRv4 Board Reader"
   },
   "description": {
-    "nl": "Leest data uit P1 DSMRv4 board van Willem Aandewiel",
-    "en": "Reads data from P1 DSMRv4 board van Willem Aandewiel"
+    "nl": "Maak slimme meter data inzichtelijk",
+    "en": "Give insights to your smart meter data"
   },
   "images": {
     "small": "/assets/images/small.png",
@@ -19,13 +19,6 @@
   "author": {
     "name": "Thijs Bardoel",
     "email": "-"
-  },
-  "contributing": {
-    "donate": {
-      "paypal": {
-        "username": ""
-      }
-    }
   },
   "category": [
     "energy"

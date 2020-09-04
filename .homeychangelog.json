@@ -1,0 +1,11 @@
+{
+  "2.0.0": {
+    "en": "Added new device driver for the REST API"
+  },
+  "1.0.1": {
+    "en": "Added support for energy tab"
+  },
+  "1.0.0": {
+    "en": "Initial release"
+  }
+}
