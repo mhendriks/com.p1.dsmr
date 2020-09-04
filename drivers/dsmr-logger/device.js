@@ -5,6 +5,15 @@ const fetch = require('node-fetch');
 
 class MyDevice extends Homey.Device {
 
+	updateSetting(device, setting, value) {
+		const body_json = { "name": setting, "value": value };
+		var hostname = device.getSetting('hostname');
+		fetch('http://' + hostname + '/api/v1/dev/settings/', { method: 'POST', body: JSON.stringify(body_json) })
+			.catch(function (err) {
+				device.log(err);
+			});
+	}
+
 	timerElapsed(device) {
 		setTimeout(function () { device.timerElapsed(device); }, device.getSetting('interval') * 1000);
 		var energy = {
@@ -35,7 +44,6 @@ class MyDevice extends Homey.Device {
 		});
 	}
 
-
 	// this method is called when the Device is initialized
 	onInit() {
 		let device = this;
@@ -46,6 +54,14 @@ class MyDevice extends Homey.Device {
 		device.log('Interval:', device.getSetting('interval'));
 
 		setTimeout(function () { device.timerElapsed(device); }, device.getSetting('interval') * 1000);
+	}
+
+	async onSettings( oldSettingsObj, newSettingsObj, changedKeysArr ) {
+		changedKeysArr.forEach(element => {
+			if(element === 'interval') {
+				this.updateSetting(this, "tlgrm_interval", newSettingsObj.interval);
+			}
+		});
 	}
 }
 
