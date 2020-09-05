@@ -3,10 +3,17 @@
     "version": "2.0.0",
     "main": "app.js",
     "devDependencies": {
-      "homey": "^2.6.1"
+        "homey": "^2.6.1"
     },
     "dependencies": {
-      "node-fetch": "^2.6.0"
-    }
-  }
-  
+        "node-fetch": "^2.6.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/BardoelT/com.p1.dsmr"
+    },
+    "bugs": {
+        "url": "https://github.com/BardoelT/com.p1.dsmr/issues"
+    },
+    "homepage": "https://github.com/BardoelT/com.p1.dsmr#readme"
+}
