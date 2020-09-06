@@ -5,12 +5,12 @@ const fetch = require('node-fetch');
 
 class MyDevice extends Homey.Device {
 
-	updateSetting(device, setting, value) {
+	updateSetting(setting, value) {
 		const body_json = { "name": setting, "value": value };
-		var hostname = device.getSetting('hostname');
+		var hostname = this.getSetting('hostname');
 		fetch('http://' + hostname + '/api/v1/dev/settings/', { method: 'POST', body: JSON.stringify(body_json) })
 			.catch(function (err) {
-				device.log(err);
+				this.log(err);
 			});
 	}
 
@@ -46,20 +46,20 @@ class MyDevice extends Homey.Device {
 
 	// this method is called when the Device is initialized
 	onInit() {
-		let device = this;
-		device.log('dsmr-logger init');
-		device.log('Name:', device.getName());
-		device.log('Class:', device.getClass());
-		device.log('Hostname:', device.getSetting('hostname'));
-		device.log('Interval:', device.getSetting('interval'));
+		this.log('dsmr-logger init');
+		this.log('Name:', this.getName());
+		this.log('Class:', this.getClass());
+		this.log('Hostname:', this.getSetting('hostname'));
+		this.log('Interval:', this.getSetting('interval'));
 
-		setTimeout(function () { device.timerElapsed(device); }, device.getSetting('interval') * 1000);
+		var device = this;
+		setTimeout(function () { device.timerElapsed(device); }, this.getSetting('interval') * 1000);
 	}
 
 	async onSettings( oldSettingsObj, newSettingsObj, changedKeysArr ) {
 		changedKeysArr.forEach(element => {
 			if(element === 'interval') {
-				this.updateSetting(this, "tlgrm_interval", newSettingsObj.interval);
+				this.updateSetting("tlgrm_interval", newSettingsObj.interval);
 			}
 		});
 	}
