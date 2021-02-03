@@ -34,7 +34,7 @@
       "id": "hostname",
       "type": "text",
       "label": "Hostname or IP-address",
-      "value": "DSMR-api.local"
+      "value": "dsmr-api.local"
     }
   ],
   "pair": [

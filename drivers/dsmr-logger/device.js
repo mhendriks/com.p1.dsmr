@@ -8,7 +8,7 @@ class MyDevice extends Homey.Device {
 	updateSetting(setting, value) {
 		const body_json = { "name": setting, "value": value };
 		var hostname = this.getSetting('hostname');
-		fetch('http://' + hostname + '/api/v1/dev/settings/', { method: 'POST', body: JSON.stringify(body_json) })
+		fetch('http://' + hostname + '/api/v2/dev/settings/', { method: 'POST', body: JSON.stringify(body_json) })
 			.catch(function (err) {
 				this.log(err);
 			});
@@ -25,14 +25,14 @@ class MyDevice extends Homey.Device {
 			]
 		};
 		var hostname = device.getSetting('hostname');
-		fetch('http://' + hostname + '/api/v1/sm/actual').then(function (response) {
+		fetch('http://' + hostname + '/api/v2/sm/actual').then(function (response) {
 			response.json().then(function (json) {
 				energy.list.forEach(lookup => {
 					var add = 0;
-					json.actual.forEach(element => {
+					Object.entries(json).forEach(element => {
 						lookup['dsmr'].forEach(search => {
-							if (search === element['name']) {
-								add += (element['value'] * lookup['factor']);
+							if (search === element[0]) {
+								add += (element[1].value * lookup['factor']);
 								device.setCapabilityValue(lookup['device'], add);
 							}
 						});

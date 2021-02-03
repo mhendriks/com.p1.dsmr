@@ -3,7 +3,7 @@ const Homey = require('homey');
 class P1 extends Homey.App {
 
     onInit () {
-        this.log('DSMRv4 Reader is starting...');
+        this.log('DSMR P1 Reader is starting...');
     }
 }
 

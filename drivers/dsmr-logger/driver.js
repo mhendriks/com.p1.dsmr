@@ -6,7 +6,7 @@ const fetch = require('node-fetch');
 class MyDriver extends Homey.Driver {
 
 	onPairListDevices(data, callback) {
-		fetch('http://DSMR-API.local/api/v1/dev/info').then(function (response) {
+		fetch('http://dsmr-api.local/api/v2/dev/info').then(function (response) {
 			response.json().then(function (json) {
 				const devices = [
 					{
@@ -14,12 +14,12 @@ class MyDriver extends Homey.Driver {
 						"settings": { "interval": 0 }
 					}
 				]
-				json.devinfo.forEach(element => {
-					if (element['name'] === 'macaddress')
-						devices[0].data.id = element['value'];
+				Object.entries(json).forEach(element => {
+					if (element[0] === 'macaddress')
+						devices[0].data.id = element[1];
 
-					if (element['name'] === 'telegraminterval')
-						devices[0].settings.interval = element['value'];
+					if (element[0] === 'telegraminterval')
+						devices[0].settings.interval = element[1];
 				});
 				callback(null, devices);
 			});

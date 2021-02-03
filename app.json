@@ -5,8 +5,8 @@
   "brandColor": "#ff00ff",
   "sdk": 2,
   "name": {
-    "nl": "P1 DSMRv4 Board Lezer",
-    "en": "P1 DSMRv4 Board Reader"
+    "nl": "P1 DSMR API v2 Board Lezer",
+    "en": "P1 DSMR API v2 Board Reader"
   },
   "description": {
     "nl": "Maak slimme meter data inzichtelijk",
@@ -61,7 +61,7 @@
           "id": "hostname",
           "type": "text",
           "label": "Hostname or IP-address",
-          "value": "DSMR-api.local"
+          "value": "dsmr-api.local"
         }
       ],
       "pair": [
@@ -80,8 +80,8 @@
     },
     {
       "name": {
-        "nl": "P1 DSMRv4 Board Uitlezer",
-        "en": "P1 DSMRv4 Board Reader"
+        "nl": "P1 DSMR API v2 Board Uitlezer",
+        "en": "P1 DSMR API v2 Board Reader"
       },
       "images": {
         "small": "./drivers/p1-smartmeter/assets/small.png",
@@ -102,7 +102,7 @@
           "id": "hostname",
           "type": "text",
           "label": "Hostname or IP-address",
-          "value": "DSMR-api.local"
+          "value": "dsmr-api.local"
         }
       ],
       "class": "sensor",
