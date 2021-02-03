@@ -80,8 +80,8 @@
     },
     {
       "name": {
-        "nl": "P1 DSMR API v2 Board Uitlezer",
-        "en": "P1 DSMR API v2 Board Reader"
+        "nl": "DSMR  Logger Board Uitlezer",
+        "en": "DSMR  Logger  Board Reader"
       },
       "images": {
         "small": "./drivers/p1-smartmeter/assets/small.png",
